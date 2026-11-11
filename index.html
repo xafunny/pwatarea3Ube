@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PWATAREA3 | Programación Web Avanzada</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+:root{--red:#e52b36;--dark:#101014;--ink:#202027;--muted:#777780;--line:#e9e9ed;--bg:#f7f7f9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',Arial,sans-serif}a{color:inherit;text-decoration:none}
+.topbar{height:76px;padding:0 max(6vw,24px);display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--line)}
+.brand{font:700 19px 'Space Grotesk';letter-spacing:-.6px;display:flex;align-items:center;gap:10px}
+.brand-mark{background:var(--red);color:#fff;width:32px;height:32px;border-radius:9px;display:grid;place-items:center}
+.topbar nav{display:flex;gap:28px;color:#666;font-size:13px}.topbar nav a:hover{color:var(--red)}
+main{max-width:1180px;margin:auto;padding:0 28px}
+.hero{min-height:420px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px;padding:55px 0 62px}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--red)}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif}
+h1{font-size:clamp(42px,6vw,68px);line-height:1.02;letter-spacing:-3px;margin:17px 0}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero-copy p{max-width:450px;color:var(--muted);line-height:1.8;font-size:15px;margin:0 0 25px}
+.btn{display:inline-flex;gap:25px;align-items:center;padding:14px 19px;border-radius:7px;font-size:13px;font-weight:700}
+.btn-red{background:var(--red);color:white}.btn-red:hover{background:#c91f2a}
+.hero-art{height:300px;background:var(--dark);border-radius:18px;position:relative;overflow:hidden;display:grid;place-items:center}
+.orbit{position:absolute;border:1px solid #ffffff19;border-radius:50%;width:300px;height:300px}.orbit-two{width:410px;height:410px}
+.code-card{z-index:1;width:270px;background:#1c1c23;border:1px solid #383840;border-radius:12px;padding:18px 20px;box-shadow:0 22px 55px #0008;color:#e8e8ee;font:13px/2 monospace}
+.dots{display:flex;gap:6px;margin-bottom:14px}.dots i{width:7px;height:7px;border-radius:50%;background:#e52b36}.dots i:nth-child(2){background:#e6b34c}.dots i:nth-child(3){background:#62b981}
+.code-card code b{color:#f07880}.code-card code span{color:#8dc8ff}.code-card code .pink{color:#e68bdb}
+.code-foot{border-top:1px solid #ffffff20;margin-top:15px;padding-top:10px;font:9px 'DM Sans';letter-spacing:1px;color:#aaa}
+.hero-number{position:absolute;right:24px;bottom:20px;color:white;font:700 28px 'Space Grotesk'}.hero-number span{display:block;font:9px 'DM Sans';letter-spacing:2px;color:#aaa}
+.section{padding:22px 0 65px}.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px}
+.section-head h2{font-size:30px;letter-spacing:-1px;margin:8px 0 0}.section-head p{color:var(--muted);font-size:12px}
+.exercise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.exercise-card{background:white;border:1px solid var(--line);border-radius:12px;padding:22px;min-height:175px;transition:.2s}
+.exercise-card:hover{transform:translateY(-4px);border-color:#f0a1a5;box-shadow:0 12px 28px #1a1a2010}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.exercise-num{font:700 12px 'Space Grotesk';color:var(--red);background:#fff0f1;padding:7px 9px;border-radius:6px}.arrow{font-size:18px;color:#aaa}
+.exercise-card h3{font-size:18px;margin:19px 0 5px}.exercise-card p{font-size:12px;color:var(--muted);margin:0}
+.card-link{display:flex;justify-content:space-between;margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;font-weight:700}.card-link b{color:var(--red)}
+.tech-strip{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:25px 0 35px;color:#555}
+.tech-strip span{font-size:9px;letter-spacing:1.5px;color:#999}.tech-strip strong{font:600 12px 'Space Grotesk'}
+footer{background:var(--dark);color:#aaa;padding:22px max(6vw,24px);display:flex;justify-content:space-between;font-size:11px}
+.page-wrap{max-width:900px;margin:45px auto;padding:0 24px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:28px;margin:20px 0}
+.panel h1{font-size:34px;letter-spacing:-1px;margin:8px 0}.muted{color:var(--muted);font-size:13px;line-height:1.7}
+.back{font-size:12px;color:var(--red);font-weight:700;cursor:pointer}
+.form-grid{display:grid;gap:14px}label{display:grid;gap:7px;font-size:12px;font-weight:700}
+input,textarea{width:100%;padding:12px;border:1px solid #dddde3;border-radius:7px;font:14px 'DM Sans';outline:none}
+input:focus,textarea:focus{border-color:var(--red)}textarea{min-height:130px;resize:vertical}
+.btn-submit{border:0;cursor:pointer;background:var(--red);color:#fff;padding:12px 18px;border-radius:7px;font-weight:700}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+.btn-ghost{border:1px solid var(--line);background:#fff;cursor:pointer;padding:10px 14px;border-radius:7px;font-weight:700;font-size:12px}
+.notice{padding:12px 15px;background:#fff0f1;border-left:3px solid var(--red);font-size:13px;border-radius:4px}
+.menu-list{display:flex;gap:12px;flex-wrap:wrap}.menu-item{position:relative}
+.menu-trigger{border:0;background:#17171d;color:#fff;padding:12px 16px;border-radius:7px;cursor:pointer}
+.submenu{display:none;position:absolute;top:44px;left:0;min-width:180px;background:#fff;border:1px solid var(--line);box-shadow:0 10px 25px #0001;border-radius:8px;padding:7px;z-index:3}
+.submenu.open{display:block}.submenu a{display:block;padding:10px;border-radius:5px;font-size:13px}.submenu a:hover{background:#fff0f1;color:var(--red)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin-top:16px}
+.gallery img{width:100%;height:145px;object-fit:cover;border-radius:8px;background:#eee}
+.stat{font:700 54px 'Space Grotesk';color:var(--red)}.game-result{font-weight:700;margin-top:12px}
+.inline{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.inline input{max-width:180px}
+.small{font-size:11px;color:#888}
+.msg-list{margin-top:18px;display:grid;gap:10px}.msg-item{border:1px solid var(--line);border-radius:8px;padding:12px;font-size:13px}
+.tabs{display:flex;gap:8px;margin-bottom:14px}.tabs .btn-ghost.on{background:var(--red);color:#fff;border-color:var(--red)}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:40px}.hero-art{height:250px}.exercise-grid{grid-template-columns:1fr 1fr}.section-head{display:block}.tech-strip{gap:14px;flex-wrap:wrap}.topbar nav{gap:12px}}
+@media(max-width:480px){.exercise-grid{grid-template-columns:1fr}.hero h1{font-size:46px}.topbar nav{font-size:11px}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } };
+const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+const sget = (k, d) => { try { return JSON.parse(sessionStorage.getItem(k)) ?? d; } catch { return d; } };
+const sset = (k, v) => sessionStorage.setItem(k, JSON.stringify(v));
+
+async function hash(text) {
+  if (window.crypto && crypto.subtle) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  let h = 0; for (const c of text) h = (h * 31 + c.charCodeAt(0)) | 0; return 'f' + h;
+}
+
+async function seedUsers() {
+  const users = load('usuarios', []);
+  if (!users.some(u => u.correo === 'demo@pwatarea3.com')) {
+    users.push({ nombre: 'Usuario Demo', correo: 'demo@pwatarea3.com', password: await hash('Demo1234') });
+    save('usuarios', users);
+  }
+}
+
+const EJERCICIOS = [
+  ['01', 'Menú desplegable', 'Navegación interactiva', '#/ejercicio01'],
+  ['02', 'Formulario de contacto', 'Validación de datos', '#/ejercicio02'],
+  ['03', 'Contador de visitas', 'Registro de visitas persistente', '#/ejercicio03'],
+  ['04', 'Juego de adivinanzas', 'Número aleatorio y pistas', '#/ejercicio04'],
+  ['05', 'Galería de imágenes', 'Carga dinámica de imágenes', '#/ejercicio05'],
+  ['06', 'Sistema de login', 'Autenticación con sesión', '#/login'],
+];
+
+const topbar = right => `<header class="topbar"><a class="brand" href="#/"><span class="brand-mark">P</span> PWATAREA3</a>${right}</header>`;
+const backLink = `<a class="back" href="#/">← Volver al inicio</a>`;
+const page = (n, inner) => `${topbar(backLink)}<main class="page-wrap"><span class="eyebrow">${n}</span>${inner}</main>`;
+
+function vistaInicio() {
+  return `${topbar(`<nav><a href="#ejercicios" data-scroll>Ejercicios</a><a href="README.md">Documentación</a></nav>`)}
+<main>
+<section class="hero"><div class="hero-copy"><span class="eyebrow">UNIDAD 2 · BACKEND Y FRONTEND</span><h1>Programación web<br><em>en práctica.</em></h1><p>Seis ejercicios prácticos que integran HTML, CSS, JavaScript, PHP y MySQL en un solo proyecto.</p><a class="btn btn-red" href="#ejercicios" data-scroll>Explorar ejercicios <span>↘</span></a></div>
+<div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="code-card"><div class="dots"><i></i><i></i><i></i></div><code><b>&lt;?php</b><br><span>$web</span> = "creativa";<br><span class="pink">echo</span> "Hola mundo";<br><b>?&gt;</b></code><div class="code-foot">HTML · CSS · JS · PHP · MYSQL</div></div><div class="hero-number">06<span>EJERCICIOS</span></div></div></section>
+<section class="section" id="ejercicios"><div class="section-head"><div><span class="eyebrow">CONTENIDO DEL PROYECTO</span><h2>Explora los ejercicios</h2></div><p>Selecciona una tarjeta para abrir el ejercicio correspondiente.</p></div>
+<div class="exercise-grid">${EJERCICIOS.map(e => `<a class="exercise-card" href="${e[3]}"><div class="card-top"><span class="exercise-num">${e[0]}</span><span class="arrow">↗</span></div><h3>${e[1]}</h3><p>${e[2]}</p><span class="card-link">Abrir ejercicio <b>→</b></span></a>`).join('')}</div></section>
+<section class="tech-strip"><span>TECNOLOGÍAS UTILIZADAS</span><strong>HTML5</strong><strong>CSS3</strong><strong>JavaScript</strong><strong>PHP 8</strong><strong>MySQL</strong></section>
+</main>
+<footer><span>PWATAREA3 · Programación Web Avanzada</span><span>Unidad 2 · 2026</span></footer>`;
+}
+
+function vistaE1() {
+  return page('EJERCICIO 01', `<section class="panel"><h1>Menú desplegable</h1><p class="muted">Presiona una categoría para mostrar u ocultar sus opciones. La interacción se controla con JavaScript.</p>
+<div class="menu-list">
+<div class="menu-item"><button class="menu-trigger" data-menu="submenu1" aria-expanded="false">Desarrollo web ▾</button><div class="submenu" id="submenu1"><a href="#/ejercicio02">Formulario</a><a href="#/ejercicio05">Galería</a><a href="#/login">Acceso</a></div></div>
+<div class="menu-item"><button class="menu-trigger" data-menu="submenu2" aria-expanded="false">Recursos ▾</button><div class="submenu" id="submenu2"><a href="#/">Todos los ejercicios</a><a href="README.md">Documentación</a></div></div>
+</div></section>`);
+}
+function initE1() {
+  document.querySelectorAll('[data-menu]').forEach(btn => btn.addEventListener('click', e => {
+    e.stopPropagation();
+    document.querySelectorAll('.submenu').forEach(m => { if (m.id !== btn.dataset.menu) m.classList.remove('open'); });
+    const open = document.getElementById(btn.dataset.menu).classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  }));
+  document.addEventListener('click', closeMenus);
+}
+function closeMenus(e) { if (!e.target.closest('.menu-item')) document.querySelectorAll('.submenu').forEach(m => m.classList.remove('open')); }
+
+function listaMensajes() {
+  const ms = load('mensajes', []);
+  if (!ms.length) return '';
+  return `<div class="msg-list"><strong>Mensajes guardados (${ms.length})</strong>${ms.slice().reverse().map(m => `<div class="msg-item"><b>${esc(m.nombre)}</b> · ${esc(m.correo)}<br>${esc(m.mensaje)}<br><span class="small">${esc(m.fecha)}</span></div>`).join('')}</div>`;
+}
+function vistaE2() {
+  return page('EJERCICIO 02', `<section class="panel"><h1>Formulario de contacto</h1><p class="muted">Completa los campos. JavaScript valida los datos y los almacena en el navegador (localStorage).</p>
+<p class="notice" id="notice" style="display:none"></p>
+<form class="form-grid" id="contactForm" novalidate><label>Nombre<input id="nombre" maxlength="100"></label><label>Correo electrónico<input type="email" id="correo"></label><label>Mensaje<textarea id="mensaje"></textarea></label><button class="btn-submit">Enviar mensaje</button></form>
+<div id="lista">${listaMensajes()}</div></section>`);
+}
+function initE2() {
+  $('#contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const n = $('#nombre').value.trim(), c = $('#correo').value.trim(), m = $('#mensaje').value.trim();
+    const box = $('#notice'); box.style.display = 'block';
+    if (!n || !m || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c)) {
+      box.textContent = 'Revisa los campos: todos son obligatorios y el correo debe ser válido.'; return;
+    }
+    const ms = load('mensajes', []);
+    ms.push({ nombre: n, correo: c, mensaje: m, fecha: new Date().toLocaleString('es-EC') });
+    save('mensajes', ms);
+    box.textContent = 'Tu mensaje fue guardado correctamente.';
+    e.target.reset(); $('#lista').innerHTML = listaMensajes();
+  });
+}
+
+function vistaE3() {
+  const total = load('visitas', 0) + 1; save('visitas', total);
+  return page('EJERCICIO 03', `<section class="panel"><h1>Contador de visitas</h1><p class="muted">El contador se incrementa cada vez que se carga esta página y se conserva entre visitas (localStorage del navegador).</p>
+<div class="stat">${total.toLocaleString('es-EC')}</div><strong>visitas registradas</strong><p class="small">Clave utilizada: visitas.</p></section>`);
+}
+
+function nuevoJuego() { sset('juego', { secreto: Math.floor(Math.random() * 10) + 1, intentos: 0, fin: false, msg: '' }); }
+function vistaE4() {
+  if (!sget('juego', null)) nuevoJuego();
+  const g = sget('juego');
+  return page('EJERCICIO 04', `<section class="panel"><h1>Juego de adivinanzas</h1><p class="muted">Adivina el número secreto del 1 al 10. Tienes tres oportunidades. JavaScript genera el número y conserva el estado de la partida en la sesión.</p>
+${g.msg ? `<p class="notice game-result">${esc(g.msg)}</p>` : ''}
+<p><b>Intentos:</b> ${g.intentos} / 3</p>
+<form id="guessForm" class="inline"><input type="number" id="numero" min="1" max="10" placeholder="Tu número" ${g.fin ? 'disabled' : ''}><button class="btn-submit" ${g.fin ? 'disabled' : ''}>Adivinar</button></form>
+<div style="margin-top:15px"><button class="btn-submit" id="nuevo">Nueva partida</button></div></section>`);
+}
+function initE4() {
+  $('#guessForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const g = sget('juego'), v = $('#numero').value.trim(), n = Number(v);
+    if (v === '' || !Number.isInteger(n) || n < 1 || n > 10) { g.msg = 'Ingresa un número entero del 1 al 10.'; }
+    else {
+      g.intentos++;
+      if (n === g.secreto) { g.msg = `¡Correcto! Adivinaste el número en ${g.intentos} intento(s).`; g.fin = true; }
+      else if (g.intentos >= 3) { g.msg = `Se terminaron las oportunidades. El número era ${g.secreto}.`; g.fin = true; }
+      else g.msg = n < g.secreto ? 'El número secreto es mayor.' : 'El número secreto es menor.';
+    }
+    sset('juego', g); render();
+  });
+  $('#nuevo').addEventListener('click', () => { nuevoJuego(); const g = sget('juego'); g.msg = 'Nueva partida. ¡Inténtalo!'; sset('juego', g); render(); });
+}
+
+const IMAGENES_REPO = [];
+let imagenesLocales = [];
+function vistaE5() {
+  const todas = [...IMAGENES_REPO.map(f => ({ src: 'ejercicio05/imagenes/' + encodeURIComponent(f), name: f })), ...imagenesLocales];
+  return page('EJERCICIO 05', `<section class="panel"><h1>Galería de imágenes</h1><p class="muted">Selecciona imágenes JPG, PNG, GIF o WEBP para mostrarlas en la galería.</p>
+<input type="file" id="fotos" accept="image/jpeg,image/png,image/gif,image/webp" multiple>
+<div class="gallery">${todas.map(i => `<figure style="margin:0"><img src="${i.src}" alt="${esc(i.name)}"><figcaption class="small">${esc(i.name)}</figcaption></figure>`).join('')}</div>
+${todas.length ? '' : '<p class="notice" style="margin-top:16px">Todavía no hay imágenes. Selecciona algunas con el botón de arriba.</p>'}</section>`);
+}
+function initE5() {
+  $('#fotos').addEventListener('change', e => {
+    [...e.target.files].forEach(f => { if (/^image\//.test(f.type)) imagenesLocales.push({ src: URL.createObjectURL(f), name: f.name }); });
+    render();
+  });
+}
+
+function vistaLogin() {
+  if (sget('usuario', null)) { location.hash = '#/panel'; return ''; }
+  return page('EJERCICIO 06', `<section class="panel"><h1>Sistema de login</h1><p class="muted">Autenticación con sesión (sessionStorage) y usuarios guardados en el navegador. Las contraseñas se guardan con hash SHA-256.</p>
+<div class="tabs"><button class="btn-ghost on" data-tab="login">Iniciar sesión</button><button class="btn-ghost" data-tab="reg">Crear cuenta</button></div>
+<p class="notice" id="notice" style="display:none"></p>
+<form class="form-grid" id="loginForm"><label>Correo electrónico<input type="email" name="correo" required></label><label>Contraseña<input type="password" name="password" required></label><button class="btn-submit">Iniciar sesión</button></form>
+<form class="form-grid" id="regForm" style="display:none"><label>Nombre<input name="nombre" required></label><label>Correo electrónico<input type="email" name="correo" required></label><label>Contraseña (mín. 6)<input type="password" name="password" minlength="6" required></label><button class="btn-submit">Registrarme</button></form>
+<p class="small">Acceso de demostración: demo@pwatarea3.com · Demo1234</p></section>`);
+}
+function initLogin() {
+  const box = $('#notice'), say = t => { box.style.display = 'block'; box.textContent = t; };
+  document.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-tab]').forEach(x => x.classList.toggle('on', x === b));
+    $('#loginForm').style.display = b.dataset.tab === 'login' ? 'grid' : 'none';
+    $('#regForm').style.display = b.dataset.tab === 'reg' ? 'grid' : 'none';
+    box.style.display = 'none';
+  }));
+  $('#loginForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = new FormData(e.target), correo = f.get('correo').trim().toLowerCase(), h = await hash(f.get('password'));
+    const u = load('usuarios', []).find(x => x.correo.toLowerCase() === correo && x.password === h);
+    if (u) { sset('usuario', { nombre: u.nombre, correo: u.correo }); location.hash = '#/panel'; }
+    else say('Correo o contraseña incorrectos.');
+  });
+  $('#regForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = new FormData(e.target), correo = f.get('correo').trim().toLowerCase(), nombre = f.get('nombre').trim();
+    const users = load('usuarios', []);
+    if (users.some(x => x.correo.toLowerCase() === correo)) return say('Ese correo ya está registrado.');
+    users.push({ nombre, correo, password: await hash(f.get('password')) }); save('usuarios', users);
+    e.target.reset(); document.querySelector('[data-tab="login"]').click(); say('Cuenta creada. Ya puedes iniciar sesión.');
+  });
+}
+function vistaPanel() {
+  const u = sget('usuario', null);
+  if (!u) { location.hash = '#/login'; return ''; }
+  return `${topbar(`<a class="back" id="logout">Cerrar sesión</a>`)}<main class="page-wrap"><span class="eyebrow">ÁREA PRIVADA</span><section class="panel"><h1>Bienvenido, ${esc(u.nombre)}</h1><p class="muted">Has iniciado sesión correctamente. Esta página está protegida mediante una sesión.</p><p><b>Correo:</b> ${esc(u.correo)}</p></section></main>`;
+}
+function initPanel() { const l = $('#logout'); if (l) l.addEventListener('click', () => { sessionStorage.removeItem('usuario'); location.hash = '#/login'; }); }
+
+const RUTAS = {
+  '': [vistaInicio, null], 'ejercicio01': [vistaE1, initE1], 'ejercicio02': [vistaE2, initE2],
+  'ejercicio03': [vistaE3, null], 'ejercicio04': [vistaE4, initE4], 'ejercicio05': [vistaE5, initE5],
+  'login': [vistaLogin, initLogin], 'panel': [vistaPanel, initPanel],
+};
+let ultimaRuta = null;
+function render() {
+  const ruta = location.hash.replace(/^#\/?/, '');
+  const [vista, init] = RUTAS[ruta] || RUTAS[''];
+  if (ruta === 'ejercicio03' && ultimaRuta === 'ejercicio03' && window.__e3) { $('#app').innerHTML = window.__e3; }
+  else {
+    const html = vista(); if (!html) return;
+    if (ruta === 'ejercicio03') window.__e3 = html;
+    $('#app').innerHTML = html;
+  }
+  if (init) init();
+  document.querySelectorAll('[data-scroll]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault(); const t = document.getElementById('ejercicios'); if (t) t.scrollIntoView({ behavior: 'smooth' });
+  }));
+  if (ultimaRuta !== ruta) window.scrollTo(0, 0);
+  ultimaRuta = ruta;
+}
+window.addEventListener('hashchange', () => { if (location.hash === '#ejercicios') return; ultimaRuta = ultimaRuta === 'ejercicio03' ? null : ultimaRuta; render(); });
+seedUsers().then(render);
+</script>
+</body>
+</html>
